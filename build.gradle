@@ -1,12 +1,18 @@
 plugins {
     id 'java'
 }
+apply plugin : "java"
+apply plugin : "application"
 
 group = 'org.technogise'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+ext {
+    javaMainClass = "com.technogise.chess.Main"
 }
 
 dependencies {
@@ -16,4 +22,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes('Main-class': javaMainClass)
+    }
+}
+
+application {
+    mainClassName = javaMainClass
 }
